@@ -2,7 +2,7 @@
 
 <h1>User Stories</h1>
 
-<table>
+<table class="table table-striped">
   <thead>
     <tr>
       <th>Number</th>
@@ -16,7 +16,7 @@
   <tbody>
     <% @user_stories.each do |user_story| %>
       <tr>
-        <td><%= user_story.number %></td>
+        <td scope="row"><%= user_story.number %></td>
         <td><%= user_story.title %></td>
         <td><%= user_story.description %></td>
         <td><%= user_story.points %></td>

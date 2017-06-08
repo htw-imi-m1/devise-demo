@@ -2,7 +2,7 @@
     <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#containerNavbar" aria-controls="containerNavbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">Navbar</a>
+    <a class="navbar-brand" href="#">Backlog</a>
 
     <div class="collapse navbar-collapse" id="containerNavbar">
       <ul class="navbar-nav mr-auto">
@@ -23,6 +23,19 @@
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
         </li>
+        <% if user_signed_in? %>
+          <li class="nav-item">
+            <%= link_to "Log Out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to "Log In", new_user_session_path, class: "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to "Sign Up", new_user_registration_path,  class: "nav-link" %>
+          </li>
+        <% end %>
+
       </ul>
       <form class="form-inline my-2 my-md-0">
         <input class="form-control mr-sm-2" type="text" placeholder="Search">

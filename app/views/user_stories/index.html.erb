@@ -15,7 +15,7 @@
       <tr>
         <td scope="row"><%= link_to user_story.number, user_story%></td>
         <td><%= user_story.title %></td>
-        <td><%= user_story.points %></td>
+        <td class="text-right"><%= number_with_precision(user_story.points, precision: 0) %> P.</td>
           </tr>
     <% end %>
   </tbody>

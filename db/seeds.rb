@@ -6,6 +6,10 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'faker'
+
+User.delete_all
+User.create(email: 'team@backlog.com', password: 'geheim123', password_confirmation: 'geheim123')
+
 UserStory.delete_all
 points = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100]
 

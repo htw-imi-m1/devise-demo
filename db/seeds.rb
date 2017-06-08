@@ -5,3 +5,13 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'faker'
+UserStory.delete_all
+points = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100]
+
+(1..50).to_a.each do |i|
+ UserStory.create(number: format("S_%03d", i),
+ title: Faker::Lorem.sentence,
+ description: Faker::Lorem.paragraph,
+ points: points.sample)
+ end

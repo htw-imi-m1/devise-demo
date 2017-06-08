@@ -19,4 +19,5 @@
 </p>
 
 <%= link_to 'Edit', edit_user_story_path(@user_story) %> |
-<%= link_to 'Back', user_stories_path %>
+<%= link_to 'Destroy', @user_story, method: :delete, data: { confirm: 'Are you sure?' } %> |
+<%= link_to 'Back to Backlog', user_stories_path %>

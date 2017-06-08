@@ -2,7 +2,9 @@ require 'rails_helper'
 
 RSpec.describe "user_stories/show", type: :view do
   before(:each) do
-    @user_story = assign(:user_story, UserStory.create!(
+    @user_story = create(:user_story)
+
+    assign(:user_story, UserStory.create!(
       :number => "Number",
       :title => "Title",
       :description => "MyText",

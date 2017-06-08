@@ -8,64 +8,49 @@ RSpec.describe UserStoriesController, type: :controller do
   let(:invalid_attributes) {
     {title: 'Create search page', description: "bla bla bla", points: 8}
   }
-
-  # generated tests running with devise login
-  context "logged in" do
-    before(:each) do
-      @user = create(:user)
-      sign_in @user
-    end
+  context "not logged in" do
     describe "GET #index" do
-      it "returns a success response" do
-      #  user_story = UserStory.create! valid_attributes
+      it "redirects to sign_in" do
         get :index, params: {}
-        expect(response).to be_success
+        expect(response).to redirect_to new_user_session_path
       end
     end
-
     describe "GET #show" do
-      it "returns a success response" do
+      it "redirects to sign_in" do
         user_story = UserStory.create! valid_attributes
         get :show, params: {id: user_story.to_param}
-        expect(response).to be_success
+          expect(response).to redirect_to new_user_session_path
       end
     end
 
     describe "GET #new" do
-      it "returns a success response" do
+      it "redirects to sign_in" do
         get :new, params: {}
-        expect(response).to be_success
+          expect(response).to redirect_to new_user_session_path
       end
     end
 
     describe "GET #edit" do
-      it "returns a success response" do
+      it "redirects to sign_in" do
         user_story = UserStory.create! valid_attributes
         get :edit, params: {id: user_story.to_param}
-        expect(response).to be_success
+          expect(response).to redirect_to new_user_session_path
       end
     end
 
     describe "POST #create" do
       context "with valid params" do
-        it "creates a new UserStory" do
-          expect {
-            post :create, params: {user_story: valid_attributes}
-          }.to change(UserStory, :count).by(1)
+        it "doesn't create story" do
+          expect {post :create, params: {user_story: valid_attributes}
+          }.to change(UserStory, :count).by(0)
         end
 
-        it "redirects to the created user_story" do
+          it "redirects to sign_in" do
           post :create, params: {user_story: valid_attributes}
-          expect(response).to redirect_to(UserStory.last)
+          expect(response).to redirect_to new_user_session_path
         end
       end
 
-      context "with invalid params" do
-        it "returns a success response (i.e. to display the 'new' template)" do
-          post :create, params: {user_story: invalid_attributes}
-          expect(response).to be_success
-        end
-      end
     end
 
     describe "PUT #update" do
@@ -74,42 +59,36 @@ RSpec.describe UserStoriesController, type: :controller do
           {number: 'S002', title: 'Create goodbye page', description: "bla bla bla", points: 5}
         }
 
-        it "updates the requested user_story" do
+        it "does not change user_story" do
           user_story = UserStory.create! valid_attributes
           put :update, params: {id: user_story.to_param, user_story: new_attributes}
           user_story.reload
-          expect(user_story.number).to eq new_attributes[:number]
+          expect(response).to redirect_to new_user_session_path
+          expect(user_story.number).to eq valid_attributes[:number]
         end
 
         it "redirects to the user_story" do
           user_story = UserStory.create! valid_attributes
           put :update, params: {id: user_story.to_param, user_story: valid_attributes}
-          expect(response).to redirect_to(user_story)
-        end
-      end
-
-      context "with invalid params" do
-        it "returns a redirect response (i.e. to display the 'edit' template)" do
-          user_story = UserStory.create! valid_attributes
-          put :update, params: {id: user_story.to_param, user_story: invalid_attributes}
-          expect(response).to be_redirect
+          expect(response).to redirect_to new_user_session_path
         end
       end
     end
 
     describe "DELETE #destroy" do
-      it "destroys the requested user_story" do
+      it "does not destroy the requested user_story" do
         user_story = UserStory.create! valid_attributes
         expect {
           delete :destroy, params: {id: user_story.to_param}
-        }.to change(UserStory, :count).by(-1)
+        }.to change(UserStory, :count).by(0)
       end
 
       it "redirects to the user_stories list" do
         user_story = UserStory.create! valid_attributes
         delete :destroy, params: {id: user_story.to_param}
-        expect(response).to redirect_to(user_stories_url)
+        expect(response).to redirect_to new_user_session_path
       end
     end
   end
+
 end

@@ -7,13 +7,13 @@ RSpec.describe "user_stories/index", type: :view do
         :number => "Number",
         :title => "Title",
         :description => "MyText",
-        :points => "9.99"
+        :points => "9"
       ),
       UserStory.create!(
         :number => "Number",
         :title => "Title",
         :description => "MyText",
-        :points => "9.99"
+        :points => "9"
       )
     ])
   end
@@ -22,6 +22,6 @@ RSpec.describe "user_stories/index", type: :view do
     render
     assert_select "tr>td", :text => "Number".to_s, :count => 2
     assert_select "tr>td", :text => "Title".to_s, :count => 2
-    assert_select "tr>td", :text => "9.99".to_s, :count => 2
+    assert_select "tr>td", :text => "9 P.".to_s, :count => 2
   end
 end

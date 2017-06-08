@@ -19,3 +19,10 @@ points = [0, 1, 2, 3, 5, 8, 13, 20, 40, 100]
  description: Faker::Lorem.paragraph,
  points: points.sample)
  end
+
+
+# roles specials
+#   enum role: [:admin, :team, :product_owner]
+User.create(email: 'admin@backlog.com', password: 'geheim123', password_confirmation: 'geheim123', role: :admin)
+User.create(email: 'po@backlog.com', password: 'geheim123', password_confirmation: 'geheim123', role: :product_owner)
+User.create(email: 'chicken@backlog.com', password: 'geheim123', password_confirmation: 'geheim123', role: :chicken)

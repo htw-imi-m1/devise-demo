@@ -1,5 +1,7 @@
 class UserStoriesController < ApplicationController
   before_action :set_user_story, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authorize_admin
+  #before_action { authorize_roles(:team,:product_owner,:chicken) }
 
   # GET /user_stories
   # GET /user_stories.json

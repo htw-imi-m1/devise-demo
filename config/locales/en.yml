@@ -31,3 +31,6 @@
 
 en:
   hello: "Hello world"
+  missing_role: "You must have role %{roles} to access the requested page"
+  role: "your role: %{role}"
+  or: "or"

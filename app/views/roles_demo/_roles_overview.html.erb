@@ -1,0 +1,28 @@
+
+<p>Available roles: <%= User.roles %></p>
+<p> Current User Roles for user <%=current_user.email%>:</p>
+<ul>
+<% User.roles.keys.each do | role | %>
+  <li><%= role%>: <%= current_user.send("#{role}?")%>
+<% end %>
+</ul>
+
+<p>
+<% if current_user.try(:admin?) %>
+  This can only be seen by admins.
+<% end %>
+
+<% if current_user.try(:team?) %>
+  This can only be seen by Team Members.
+<% end %>
+
+<% if current_user.try(:product_owner?) %>
+  This can only be seen by Product Owners.
+<% end %>
+</p>
+
+<%= link_to "Demo Index", roles_demo_path %> |
+<%= link_to "Team Only", roles_demo_team_path %> |
+<%= link_to "Product Owners Only", roles_demo_po_path %> |
+<%= link_to "Team and Product Owners", roles_demo_team_and_po_path %> |
+<%= link_to "Admin Only", roles_demo_admin_path %>

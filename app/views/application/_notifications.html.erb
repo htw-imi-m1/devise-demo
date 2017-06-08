@@ -1,0 +1,9 @@
+
+<% flash_boot_map = {notice: :success, alert: :warning, error: :danger, info: :info}
+flash_boot_map.each do | flash_key, bootstrap_style |
+  if flash[flash_key] %>
+<div class="alert alert-<%=bootstrap_style%>" role="alert">
+  <%= flash[flash_key] %>
+</div>
+<% end
+end%>

@@ -1,24 +1,35 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a small demo app to try out devise.
 
-Things you may want to cover:
+$ rails generate devise:install
 
-* Ruby version
+Running via Spring preloader in process 86566
+      create  config/initializers/devise.rb
+      create  config/locales/devise.en.yml
+===============================================================================
 
-* System dependencies
+Some setup you must do manually if you haven't yet:
 
-* Configuration
+  1. Ensure you have defined default url options in your environments files. Here
+     is an example of default_url_options appropriate for a development environment
+     in config/environments/development.rb:
 
-* Database creation
+       config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
 
-* Database initialization
+     In production, :host should be set to the actual host of your application.
 
-* How to run the test suite
+  2. Ensure you have defined root_url to *something* in your config/routes.rb.
+     For example:
 
-* Services (job queues, cache servers, search engines, etc.)
+       root to: "home#index"
 
-* Deployment instructions
+  3. Ensure you have flash messages in app/views/layouts/application.html.erb.
+     For example:
 
-* ...
+       <p class="notice"><%= notice %></p>
+       <p class="alert"><%= alert %></p>
+
+  4. You can copy Devise views (for customization) to your app by running:
+
+       rails g devise:views
